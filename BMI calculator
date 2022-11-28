@@ -1,0 +1,35 @@
+Bot.send("Welcome to BMI Calculator");
+Bot.send("Enter you age and weight separated with comma: weight(kg),height(m)");
+async function respond(inputText){
+    var l = inputText.split(",");
+    try {
+        if (l[1] == 0){
+            throw new Error ("You are dividing by zero.");
+        }
+        var BMI_calc = (l) => { 
+            return l[0]/(l[1]*l[1]);
+        };
+        check_health(BMI_calc(l));
+        
+        
+    }
+    catch(err) {
+        Bot.send(err.message);
+    }
+}
+ 
+ 
+function check_health(BMI){
+    if (BMI < 18.5){
+        Bot.send("You're underweight. EAT A LOT!!!🍬🍫🍟🍔");
+    }
+    else if (BMI >= 18.5 && BMI <24.9){
+        Bot.send("Too good!! You are the most healthy person I've ever seen.💪");
+    }
+    else if (BMI >= 24.9 && BMI < 29.9){
+        Bot.send("Well you are no less than OSWALD.🤣");
+    }
+    else{
+        Bot.send("Gone case!! EAT LESSSS🥗🥗🥗");
+    }
+}
